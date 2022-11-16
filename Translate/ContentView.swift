@@ -8,13 +8,95 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var editingText: String = ""
+    @State var translateText: String = ""
+    
+    @State var translateLangs: [TransLangModel] = []
+    
+    let allTranslateLangs: [TransLangModel] = [
+        TransLangModel(name: "cn"),
+        TransLangModel(name: "en"),
+        TransLangModel(name: "222222"),
+        TransLangModel(name: "3333"),
+        TransLangModel(name: "433"),
+        TransLangModel(name: "54434343"),
+        TransLangModel(name: "544343431"),
+    ]
+    
+    func addTransLangIfNeeded(lang: TransLangModel) -> Void {
+        let isContains = translateLangs.contains { l in
+            return l.id == lang.id
+        }
+        if (!isContains) {
+            translateLangs.append(lang)
+        } else {
+            translateLangs.removeAll { l in
+                return l.id == lang.id
+            }
+        }
+    }
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            VStack {
+                HStack {
+                    Text("输入需要翻译的文本")
+                        .font(.footnote)
+                        .foregroundColor(Color.gray)
+                    Spacer()
+                }
+                TextEditor(text: $editingText)
+                    .frame(minHeight: 130, idealHeight: 140, maxHeight: 150)
+
+                    .onSubmit {
+                        translateText = "1"
+                    }
+                    .font(.body)
+            }
+            
+                
+            
+            VStack {
+                HStack {
+                    Text("添加翻译语言")
+                        .font(.footnote)
+                        .foregroundColor(Color.gray)
+                    Spacer()
+                }
+                HStack {
+                    
+                    ForEach(translateLangs) { Lang in
+                        Button(Lang.name) {
+                            translateText = Lang.name
+                        }
+                    }
+                    
+                    Spacer()
+                    Menu("-") {
+                        
+                        ForEach(allTranslateLangs) { lang in
+                            
+                            Button {
+                                addTransLangIfNeeded(lang: lang)
+                            } label: {
+                                HStack {
+                                    Image(systemName: "checkmark")
+                                        .renderingMode(.template)
+                                        .foregroundColor(Color.green)
+                                    Text(lang.name)
+                                }
+                            }
+                        }
+                    }
+                    .frame(width: 50)
+                }
+                Text(translateText)
+                    .frame(minHeight: 30)
+            }
+            
         }
+        .frame(width: 360)
         .padding()
     }
 }

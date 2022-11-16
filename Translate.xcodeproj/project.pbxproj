@@ -11,6 +11,7 @@
 		CCBA16342924BCA60097F62C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA16332924BCA60097F62C /* ContentView.swift */; };
 		CCBA16362924BCA80097F62C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCBA16352924BCA80097F62C /* Assets.xcassets */; };
 		CCBA163A2924BCA80097F62C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCBA16392924BCA80097F62C /* Preview Assets.xcassets */; };
+		CCBA16412924CAE70097F62C /* TransLangModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA16402924CAE70097F62C /* TransLangModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		CCBA16352924BCA80097F62C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCBA16372924BCA80097F62C /* Translate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Translate.entitlements; sourceTree = "<group>"; };
 		CCBA16392924BCA80097F62C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CCBA16402924CAE70097F62C /* TransLangModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransLangModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				CCBA16312924BCA60097F62C /* TranslateApp.swift */,
 				CCBA16332924BCA60097F62C /* ContentView.swift */,
+				CCBA16402924CAE70097F62C /* TransLangModel.swift */,
 				CCBA16352924BCA80097F62C /* Assets.xcassets */,
 				CCBA16372924BCA80097F62C /* Translate.entitlements */,
 				CCBA16382924BCA80097F62C /* Preview Content */,
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBA16342924BCA60097F62C /* ContentView.swift in Sources */,
+				CCBA16412924CAE70097F62C /* TransLangModel.swift in Sources */,
 				CCBA16322924BCA60097F62C /* TranslateApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

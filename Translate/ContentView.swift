@@ -7,6 +7,19 @@
 
 import SwiftUI
 
+struct MenuItem: View {
+    var isSeleted: Bool = false
+    var model: TransLangModel
+    var body: some View {
+        HStack {
+            if (isSeleted) {
+                Image(systemName: "checkmark")
+            }
+            Text(model.name)
+        }
+    }
+}
+
 struct ContentView: View {
     
     @State var editingText: String = ""
@@ -36,6 +49,8 @@ struct ContentView: View {
             }
         }
     }
+    
+    
     
     var body: some View {
         VStack {
@@ -80,16 +95,23 @@ struct ContentView: View {
                             Button {
                                 addTransLangIfNeeded(lang: lang)
                             } label: {
-                                HStack {
-                                    Image(systemName: "checkmark")
-                                        .renderingMode(.template)
-                                        .foregroundColor(Color.green)
-                                    Text(lang.name)
+                                
+                                let isSeleted = translateLangs.contains { l in
+                                    l.id == lang.id
                                 }
+                                
+                                MenuItem(isSeleted: isSeleted, model: lang)
+                                
+//                                HStack {
+//                                    Image(systemName: "checkmark")
+//                                        .renderingMode(.template)
+//                                        .foregroundColor(Color.green)
+//                                    Text(lang.name)
+//                                }
                             }
                         }
                     }
-                    .frame(width: 50)
+                    .frame(width: 80)
                 }
                 Text(translateText)
                     .frame(minHeight: 30)

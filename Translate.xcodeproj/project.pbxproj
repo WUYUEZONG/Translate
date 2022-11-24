@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC58E6DE292F6961009B71C8 /* WZRequestTool in Frameworks */ = {isa = PBXBuildFile; productRef = CC58E6DD292F6961009B71C8 /* WZRequestTool */; };
 		CCBA16322924BCA60097F62C /* TranslateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA16312924BCA60097F62C /* TranslateApp.swift */; };
 		CCBA16342924BCA60097F62C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA16332924BCA60097F62C /* ContentView.swift */; };
 		CCBA16362924BCA80097F62C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCBA16352924BCA80097F62C /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC58E6DF292F6B78009B71C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CCBA162E2924BCA60097F62C /* Translate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Translate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBA16312924BCA60097F62C /* TranslateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateApp.swift; sourceTree = "<group>"; };
 		CCBA16332924BCA60097F62C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC58E6DE292F6961009B71C8 /* WZRequestTool in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +57,7 @@
 		CCBA16302924BCA60097F62C /* Translate */ = {
 			isa = PBXGroup;
 			children = (
+				CC58E6DF292F6B78009B71C8 /* Info.plist */,
 				CCBA16312924BCA60097F62C /* TranslateApp.swift */,
 				CCBA16332924BCA60097F62C /* ContentView.swift */,
 				CCBA16402924CAE70097F62C /* TransLangModel.swift */,
@@ -88,6 +92,9 @@
 			dependencies = (
 			);
 			name = Translate;
+			packageProductDependencies = (
+				CC58E6DD292F6961009B71C8 /* WZRequestTool */,
+			);
 			productName = Translate;
 			productReference = CCBA162E2924BCA60097F62C /* Translate.app */;
 			productType = "com.apple.product-type.application";
@@ -116,6 +123,9 @@
 				Base,
 			);
 			mainGroup = CCBA16252924BCA60097F62C;
+			packageReferences = (
+				CC58E6DC292F6961009B71C8 /* XCRemoteSwiftPackageReference "WZRequestTool" */,
+			);
 			productRefGroup = CCBA162F2924BCA60097F62C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -273,6 +283,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Translate/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -311,6 +322,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Translate/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -358,6 +370,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CC58E6DC292F6961009B71C8 /* XCRemoteSwiftPackageReference "WZRequestTool" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WUYUEZONG/WZRequestTool.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CC58E6DD292F6961009B71C8 /* WZRequestTool */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC58E6DC292F6961009B71C8 /* XCRemoteSwiftPackageReference "WZRequestTool" */;
+			productName = WZRequestTool;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CCBA16262924BCA60097F62C /* Project object */;
 }

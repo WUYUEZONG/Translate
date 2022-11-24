@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WZRequestTool
 
 struct MenuItem: View {
     var isSeleted: Bool = false
@@ -50,6 +51,15 @@ struct ContentView: View {
         }
     }
     
+    func reqeust(q: String) {
+        WZRequestTool<TransRequests, [String: Any]>.request(target: .vipTranslate(q: q, to: "zh")) { data in
+            
+        } fail: { error in
+            
+        }
+
+    }
+    
     
     
     var body: some View {
@@ -61,34 +71,42 @@ struct ContentView: View {
                         .foregroundColor(Color.gray)
                     Spacer()
                 }
+                
                 TextEditor(text: $editingText)
                     .frame(minHeight: 130, idealHeight: 140, maxHeight: 150)
-
+                    .onChange(of: editingText, perform: { newValue in
+                        
+                        if (editingText.isEmpty) {
+                            
+                        }
+                    })
                     .onSubmit {
-                        translateText = "1"
+                        translateText = editingText
                     }
                     .font(.body)
+                
             }
             
                 
             
             VStack {
-                HStack {
-                    Text("添加翻译语言")
-                        .font(.footnote)
-                        .foregroundColor(Color.gray)
-                    Spacer()
-                }
+//                HStack {
+//                    Text("添加翻译语言")
+//                        .font(.footnote)
+//                        .foregroundColor(Color.gray)
+//                    Spacer()
+//                }
                 HStack {
                     
                     ForEach(translateLangs) { Lang in
                         Button(Lang.name) {
-                            translateText = Lang.name
+//                            translateText = Lang.name
+                            reqeust(q: translateText)
                         }
                     }
                     
                     Spacer()
-                    Menu("-") {
+                    Menu("语言") {
                         
                         ForEach(allTranslateLangs) { lang in
                             
@@ -102,12 +120,6 @@ struct ContentView: View {
                                 
                                 MenuItem(isSeleted: isSeleted, model: lang)
                                 
-//                                HStack {
-//                                    Image(systemName: "checkmark")
-//                                        .renderingMode(.template)
-//                                        .foregroundColor(Color.green)
-//                                    Text(lang.name)
-//                                }
                             }
                         }
                     }
@@ -124,6 +136,7 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    
     static var previews: some View {
         ContentView()
     }

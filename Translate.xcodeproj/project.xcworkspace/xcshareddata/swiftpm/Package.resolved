@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitee.com/rn-wyz/Alamofire.git",
+      "state" : {
+        "revision" : "f96b619bcb2383b43d898402283924b80e2c4bae",
+        "version" : "5.4.3"
+      }
+    },
+    {
+      "identity" : "wzrequesttool",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/WUYUEZONG/WZRequestTool.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "b7d45bff02ab97cd2ac3b3d18e918f751e06efe4"
+      }
+    }
+  ],
+  "version" : 2
+}

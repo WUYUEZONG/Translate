@@ -23,20 +23,12 @@ struct MenuItem: View {
 
 struct ContentView: View {
     
-    @State var editingText: String = ""
-    @State var translateText: String = ""
+    @State var editingText: String = "hello"
+    @State var translateText: String = "hello"
     
-    @State var translateLangs: [TransLangModel] = []
+    @State var translateLangs: [TransLangModel] = [.en, .zh]
     
-    let allTranslateLangs: [TransLangModel] = [
-        TransLangModel(name: "cn"),
-        TransLangModel(name: "en"),
-        TransLangModel(name: "222222"),
-        TransLangModel(name: "3333"),
-        TransLangModel(name: "433"),
-        TransLangModel(name: "54434343"),
-        TransLangModel(name: "544343431"),
-    ]
+    let allTranslateLangs: [TransLangModel] = TransLangModel.languages
     
     func addTransLangIfNeeded(lang: TransLangModel) -> Void {
         let isContains = translateLangs.contains { l in
@@ -53,7 +45,10 @@ struct ContentView: View {
     
     func reqeust(q: String) {
         WZRequestTool<TransRequests, [String: Any]>.request(target: .vipTranslate(q: q, to: "zh")) { data in
-            
+            debugPrint(data)
+            guard let trans_results = data["trans_result"] as? [[String: Any]] else { return }
+            guard let first = trans_results.first, let dst = first["dst"] as? String else { return }
+            translateText = dst
         } fail: { error in
             
         }
@@ -75,10 +70,11 @@ struct ContentView: View {
                 TextEditor(text: $editingText)
                     .frame(minHeight: 130, idealHeight: 140, maxHeight: 150)
                     .onChange(of: editingText, perform: { newValue in
-                        
+                        debugPrint(editingText)
                         if (editingText.isEmpty) {
                             
                         }
+                        translateText = editingText
                     })
                     .onSubmit {
                         translateText = editingText
@@ -90,17 +86,10 @@ struct ContentView: View {
                 
             
             VStack {
-//                HStack {
-//                    Text("添加翻译语言")
-//                        .font(.footnote)
-//                        .foregroundColor(Color.gray)
-//                    Spacer()
-//                }
                 HStack {
                     
                     ForEach(translateLangs) { Lang in
                         Button(Lang.name) {
-//                            translateText = Lang.name
                             reqeust(q: translateText)
                         }
                     }
@@ -125,8 +114,14 @@ struct ContentView: View {
                     }
                     .frame(width: 80)
                 }
-                Text(translateText)
-                    .frame(minHeight: 30)
+                HStack {
+                    Text(translateText)
+                        .multilineTextAlignment(.leading)
+                        .frame( minHeight: 30)
+                    
+                    Spacer()
+                }
+                
             }
             
         }
@@ -136,7 +131,7 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    
+
     static var previews: some View {
         ContentView()
     }

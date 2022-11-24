@@ -12,10 +12,124 @@ import CommonCrypto
 
 struct TransLangModel: Identifiable {
 
-    
+    let keyCode: String
     let name: String
-    var id: String { name }
+    var id: String { keyCode }
     
+}
+
+extension TransLangModel {
+    static var auto: TransLangModel = {
+        return TransLangModel(keyCode: "auto", name: "自动检测")
+    }()
+    
+    static var zh: TransLangModel = {
+        return TransLangModel(keyCode: "zh", name: "中文")
+    }()
+    
+    static var en: TransLangModel = {
+        return TransLangModel(keyCode: "en", name: "英语")
+    }()
+    
+    static var yue: TransLangModel = {
+        return TransLangModel(keyCode: "yue", name: "粤语")
+    }()
+    
+    static var wyw: TransLangModel = {
+        return TransLangModel(keyCode: "wyw", name: "文言文")
+    }()
+    
+    static var jp: TransLangModel = {
+        return TransLangModel(keyCode: "jp", name: "日语")
+    }()
+    
+    static var kor: TransLangModel = {
+        return TransLangModel(keyCode: "kor", name: "韩语")
+    }()
+    
+    static var fra: TransLangModel = {
+        return TransLangModel(keyCode: "fra", name: "法语")
+    }()
+    
+    static var spa: TransLangModel = {
+        return TransLangModel(keyCode: "spa", name: "西班牙语")
+    }()
+    
+    static var th: TransLangModel = {
+        return TransLangModel(keyCode: "th", name: "泰语")
+    }()
+    
+    static var ara: TransLangModel = {
+        return TransLangModel(keyCode: "ara", name: "阿拉伯语")
+    }()
+    
+    static var ru: TransLangModel = {
+        return TransLangModel(keyCode: "ru", name: "俄语")
+    }()
+    
+    static var pt: TransLangModel = {
+        return TransLangModel(keyCode: "pt", name: "葡萄牙语")
+    }()
+    
+    static var de: TransLangModel = {
+        return TransLangModel(keyCode: "de", name: "德语")
+    }()
+    
+    static var it: TransLangModel = {
+        return TransLangModel(keyCode: "it", name: "意大利语")
+    }()
+    
+    static var el: TransLangModel = {
+        return TransLangModel(keyCode: "el", name: "希腊语")
+    }()
+    
+    static var nl: TransLangModel = {
+        return TransLangModel(keyCode: "nl", name: "荷兰语")
+    }()
+    
+    
+    static var pl: TransLangModel = {
+        return TransLangModel(keyCode: "pl", name: "波兰语")
+    }()
+    
+    static var bul: TransLangModel = {
+        return TransLangModel(keyCode: "bul", name: "保加利亚语")
+    }()
+    
+    static var est: TransLangModel = {
+        return TransLangModel(keyCode: "est", name: "爱沙尼亚语")
+    }()
+    
+    
+}
+
+extension TransLangModel {
+    
+    ///
+    static var languages: [TransLangModel] {
+        return [
+            .auto,
+            .zh,
+            .en,
+            .yue,
+            .wyw,
+            .jp,
+            .kor,
+            .fra,
+            .spa,
+            .th,
+            .ara,
+            .ru,
+            .pt,
+            .de,
+            .it,
+            .el,
+            .nl,
+            .pl,
+            .bul,
+            .est,
+        ]
+    }
 }
 
 
@@ -38,9 +152,9 @@ extension TransRequests  {
         switch self {
         case let .vipTranslate(q, from, to):
             
-            let randomNum = "1"
+            let randomNum = "1435660288"
             let appid = "20210527000845004"
-            let md5 = "\(q)\(appid)\(randomNum)rsUpZZ57xQOgoykrZpOS".md5
+            let md5 = "\(appid)\(q)\(randomNum)rsUpZZ57xQOgoykrZpOS".md5
             
             method = .post
             params = [

@@ -105,10 +105,12 @@ extension TransLangModel {
 
 extension TransLangModel {
     
+    static var languagesWithAuto: [TransLangModel] {
+        return [.auto] + languages
+    }
     ///
     static var languages: [TransLangModel] {
         return [
-            .auto,
             .zh,
             .en,
             .yue,
@@ -170,6 +172,8 @@ extension TransRequests  {
             header = ["Content-Type": "application/x-www-form-urlencoded"]
             
         }
+        
+        debugPrint("params = ", params)
         return ("https://fanyi-api.baidu.com", path, method, header, params, encoding)
         
     }

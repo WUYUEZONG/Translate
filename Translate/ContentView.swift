@@ -24,9 +24,13 @@ struct MenuItem: View {
 struct ContentView: View {
     
     @State var editingText: String = "hello"
-    @State var translateText: String = "hello"
+
+    @State var translateReusltText: String = ""
     
+    /// 将要被翻译的语言
     @State var translateLangs: [TransLangModel] = [.en, .zh]
+    
+    @State private var translateFrom: TransLangModel = .auto
     
     let allTranslateLangs: [TransLangModel] = TransLangModel.languages
     
@@ -43,12 +47,16 @@ struct ContentView: View {
         }
     }
     
-    func reqeust(q: String) {
-        WZRequestTool<TransRequests, [String: Any]>.request(target: .vipTranslate(q: q, to: "zh")) { data in
+    mutating func setTranslateFrome(lang: TransLangModel) -> Void {
+        translateFrom = lang
+    }
+    
+    func reqeust(q: String, to: TransLangModel) {
+        WZRequestTool<TransRequests, [String: Any]>.request(target: .vipTranslate(q: q, from: translateFrom.keyCode, to: to.keyCode)) { data in
             debugPrint(data)
             guard let trans_results = data["trans_result"] as? [[String: Any]] else { return }
             guard let first = trans_results.first, let dst = first["dst"] as? String else { return }
-            translateText = dst
+            translateReusltText = dst
         } fail: { error in
             
         }
@@ -61,36 +69,53 @@ struct ContentView: View {
         VStack {
             VStack {
                 HStack {
-                    Text("输入需要翻译的文本")
+                    Text("输入并选择需要翻译的文本")
                         .font(.footnote)
                         .foregroundColor(Color.gray)
                     Spacer()
+                    Menu(translateFrom.name) {
+                        
+                        ForEach(TransLangModel.languagesWithAuto) { lang in
+                            
+                            Button {
+                                self.translateFrom = lang
+                            } label: {
+                                MenuItem(isSeleted: false, model: lang)
+                                
+                            }
+                        }
+                    }
+                    .frame(width: 90)
                 }
                 
                 TextEditor(text: $editingText)
-                    .frame(minHeight: 130, idealHeight: 140, maxHeight: 150)
+                    .frame(minHeight: 80, idealHeight: 120, maxHeight: 140)
                     .onChange(of: editingText, perform: { newValue in
                         debugPrint(editingText)
                         if (editingText.isEmpty) {
-                            
+
                         }
-                        translateText = editingText
+//                        reqeust(q:editingText, to: translateLangs.first!)
+
                     })
+                    
                     .onSubmit {
-                        translateText = editingText
+                        debugPrint("onsubmit",editingText)
                     }
+
                     .font(.body)
                 
-            }
-            
                 
-            
+                    
+                    
+                
+            }
             VStack {
                 HStack {
                     
                     ForEach(translateLangs) { Lang in
                         Button(Lang.name) {
-                            reqeust(q: translateText)
+                            reqeust(q:editingText, to: Lang)
                         }
                     }
                     
@@ -112,17 +137,20 @@ struct ContentView: View {
                             }
                         }
                     }
-                    .frame(width: 80)
+                    .frame(width: 90)
                 }
                 HStack {
-                    Text(translateText)
+                    Text(translateReusltText)
                         .multilineTextAlignment(.leading)
                         .frame( minHeight: 30)
+                        .textSelection(.enabled)
+                        .padding()
                     
                     Spacer()
                 }
                 
             }
+            Spacer()
             
         }
         .frame(width: 360)

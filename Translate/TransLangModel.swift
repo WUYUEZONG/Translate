@@ -173,7 +173,10 @@ extension TransRequests  {
             
         }
         
-        debugPrint("params = ", params)
+        if let p = params {
+            debugPrint("params = ", p)
+        }
+        
         return ("https://fanyi-api.baidu.com", path, method, header, params, encoding)
         
     }

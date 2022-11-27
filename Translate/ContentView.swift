@@ -56,6 +56,7 @@ struct ContentView: View {
             debugPrint(data)
             guard let trans_results = data["trans_result"] as? [[String: Any]] else { return }
             guard let first = trans_results.first, let dst = first["dst"] as? String else { return }
+            debugPrint("is main \(Thread.isMainThread)")
             translateReusltText = dst
         } fail: { error in
             
@@ -144,7 +145,7 @@ struct ContentView: View {
                         .multilineTextAlignment(.leading)
                         .frame( minHeight: 30)
                         .textSelection(.enabled)
-                        .padding()
+//                        .padding()
                     
                     Spacer()
                 }
